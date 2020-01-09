@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddTasksScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,6 +30,7 @@ class AddTasksScreen extends StatelessWidget {
             TextField(
               autofocus: true,
               decoration: InputDecoration(focusColor: Colors.lightBlueAccent),
+              onChanged: null,
             ),
             SizedBox(
               height: 20.0,
@@ -39,7 +41,9 @@ class AddTasksScreen extends StatelessWidget {
                 'ADD',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () {},
+              onPressed: () {
+                 
+              },
             ),
           ],
         ),
