@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey/widgets/add_tasks_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
-import 'package:todoey/models/task.dart';
+import 'package:todoey/models/task_data.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Task one'),
-    Task(name: 'Task two'),
-    Task(name: 'Task three'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +40,12 @@ class _TasksScreenState extends State<TasksScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  '13 Tasks',
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                  child: Text(
+                    '${Provider.of<TaskData>(context).taskCount} Tasks',
+                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  ),
                 ),
               ],
             ),
@@ -67,7 +60,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(30.0),
                 ),
               ),
-              child: TasksList(tasks: tasks),
+              child: TasksList(),
             ),
           ),
         ],
@@ -79,14 +72,12 @@ class _TasksScreenState extends State<TasksScreen> {
         ),
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              builder: (context) => AddTasksScreen(
-                  tasks: tasks,
-                  addTask: (task) {
-                    setState(() {
-                      tasks.add(task);
-                    });
-                  }));
+            context: context,
+            builder: (context) => AddTasksScreen(
+              tasks: Provider.of<TaskData>(context).tasks,
+              addTask: Provider.of<TaskData>(context).addTask,
+            ),
+          );
         },
       ),
     );
