@@ -1,6 +1,15 @@
-# todoey
+# Todoey
 
-A new Flutter project.
+A Simple Todo app built with Flutter.
+
+Built as part of the [Flutter Development BootCamp](https://www.appbrewery.co/courses/enrolled/548873)
+
+
+## Packages
+
+- Provider (State managemet)
+- Shared_Preference (Dark Mode)
+- Flutter_test (Testing)
 
 ## Getting Started
 
