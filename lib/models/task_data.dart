@@ -5,9 +5,9 @@ import 'task.dart';
 
 class TaskData extends ChangeNotifier {
   List<Task> _tasks = [
-    Task(name: 'Task one'),
-    Task(name: 'Task two'),
-    Task(name: 'Task three'),
+    Task(name: 'Go to the store'),
+    Task(name: 'Go to the gym'),
+    Task(name: 'Write integration tests'),
   ];
 
   int get taskCount {
