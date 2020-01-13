@@ -1,5 +1,8 @@
 # Todoey
 
+[![Coverage Status](https://coveralls.io/repos/github/Fiyiin/todoey/badge.svg?branch=master)](https://coveralls.io/github/Fiyiin/todoey?branch=master)
+[![Build Status](https://travis-ci.com/Fiyiin/todoey.svg?branch=master)](https://travis-ci.com/Fiyiin/todoey)
+
 A Simple Todo app built with Flutter.
 
 Built as part of the [Flutter Development BootCamp](https://www.appbrewery.co/courses/enrolled/548873)
