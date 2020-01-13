@@ -5,18 +5,17 @@ env:
   # - FLUTTER_CHANNEL="stable"
   - FLUTTER_CHANNEL="master"
 sudo: false
+before_install:
+    - chmod +x scripts/flutter_test.sh
 before_script:
-  - cd ..
-  - git clone https://github.com/flutter/flutter.git -b $FLUTTER_CHANNEL
-  - export PATH=$PATH:$PWD/flutter/bin:$PWD/flutter/bin/cache/dart-sdk/bin
-  - cd -
-  - flutter doctor
+    - git clone https://github.com/flutter/flutter.git -b beta
+    - ./flutter/bin/flutter doctor
 script:
   - set -e # abort CI if an error happens
-  - ./scripts/flutter_test.sh
+  - ./flutter/bin/flutter test
 
   # export coverage
-  - if [ $FLUTTER_CHANNEL = "stable" ]; then
+  - if [ $FLUTTER_CHANNEL = "master" ]; then
     bash <(curl -s https://codecov.io/bash);
     fi
 matrix:
