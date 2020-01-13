@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoey/models/dark_theme.dart';
 import 'package:todoey/widgets/add_tasks_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'package:todoey/models/task_data.dart';
@@ -7,44 +8,84 @@ import 'package:todoey/models/task_data.dart';
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<DarkThemeData>(context);
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor:
+          themeData.darkTheme ? Colors.black : Colors.lightBlueAccent,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: EdgeInsets.only(
-                top: 60.0, left: 30.0, bottom: 30.0, right: 30.0),
+                top: 60.0, left: 20.0, bottom: 30.0, right: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.list,
-                      color: Colors.lightBlueAccent,
-                      size: 30.0,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Row(
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 25.0,
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.list,
+                              color: Colors.lightBlueAccent,
+                              size: 25.0,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Text(
+                            'Todoey',
+                            style: TextStyle(
+                              fontSize: 45.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            'Dark mode',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          Switch(
+                            activeColor: Colors.lightBlueAccent,
+                            activeTrackColor: Colors.white,
+                            inactiveThumbColor: Colors.white,
+                            inactiveTrackColor: Colors.white,
+                            value: themeData.darkTheme,
+                            onChanged: (value) {
+                              themeData.darkTheme = value;
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 10.0,
-                ),
-                Text(
-                  'Todoey',
-                  style: TextStyle(
-                    fontSize: 60.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                   child: Text(
                     '${Provider.of<TaskData>(context).taskCount} Tasks',
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -54,7 +95,7 @@ class TasksScreen extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: themeData.darkTheme ? Colors.black : Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30.0),
                   topRight: Radius.circular(30.0),
@@ -67,6 +108,7 @@ class TasksScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
+        foregroundColor: Colors.white,
         child: Icon(
           Icons.add,
         ),
