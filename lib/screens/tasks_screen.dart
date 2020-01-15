@@ -81,7 +81,7 @@ class TasksScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                   child: Text(
-                    '${Provider.of<TaskData>(context).taskCount} Tasks',
+                    '${Provider.of<int>(context)} Tasks',
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.white,

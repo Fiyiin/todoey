@@ -1,34 +1,33 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'task.dart';
+import 'package:todoey/models/database.dart';
 
 class TaskData extends ChangeNotifier {
-  List<Task> _tasks = [
-    Task(name: 'Go to the store'),
-    Task(name: 'Go to the gym'),
-    Task(name: 'Write integration tests'),
-  ];
-
-  int get taskCount {
-    return _tasks.length;
+  Future<int> taskCount() async {
+    List<Task> tasksList = await tasks;
+    print(tasksList.length);
+    return tasksList.length;
   }
 
-  UnmodifiableListView<Task> get tasks {
-    return UnmodifiableListView(_tasks);
+  get taskkk {
+
+  }
+  Future<List<Task>> get tasks async {
+    return await SQLiteProvider.db.getTasks();
   }
 
-  void addTask(Task newTask) {
-    _tasks.add(newTask);
+  void addTask(Task newTask) async {
+    await SQLiteProvider.db.createTask(newTask);
     notifyListeners();
   }
 
-  void updateTask(Task task) {
+  void updateTask(Task task) async {
     task.toggleDone();
+    SQLiteProvider.db.updateTask(task);
     notifyListeners();
   }
 
-  Future<void> deleteTask(BuildContext context, int task) async {
+  Future<void> deleteTask(BuildContext context, int id) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -46,7 +45,7 @@ class TaskData extends ChangeNotifier {
             FlatButton(
               child: Text('Yes'),
               onPressed: () {
-                _tasks.removeAt(task);
+                SQLiteProvider.db.deleteTask(id);
                 notifyListeners();
                 Navigator.pop(context);
               },
