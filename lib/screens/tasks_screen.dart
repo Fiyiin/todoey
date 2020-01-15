@@ -80,12 +80,17 @@ class TasksScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                  child: Text(
-                    '${Provider.of<int>(context)} Tasks',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
-                    ),
+                  child: FutureBuilder(
+                    future: Provider.of<TaskData>(context).taskCount(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    return Text(
+                      '${snapshot.data} Tasks',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    );
+  }
                   ),
                 ),
               ],

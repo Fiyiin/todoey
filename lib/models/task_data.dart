@@ -5,13 +5,9 @@ import 'package:todoey/models/database.dart';
 class TaskData extends ChangeNotifier {
   Future<int> taskCount() async {
     List<Task> tasksList = await tasks;
-    print(tasksList.length);
     return tasksList.length;
   }
 
-  get taskkk {
-
-  }
   Future<List<Task>> get tasks async {
     return await SQLiteProvider.db.getTasks();
   }
