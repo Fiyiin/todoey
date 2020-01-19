@@ -5,7 +5,7 @@ import 'package:todoey/models/database.dart';
 class TaskData extends ChangeNotifier {
   Future<int> taskCount() async {
     List<Task> tasksList = await tasks;
-    return tasksList.length;
+    return tasksList?.length ?? 0;
   }
 
   Future<List<Task>> get tasks async {
@@ -23,32 +23,8 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteTask(BuildContext context, int id) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Center(child: Text('Delete Task?')),
-          content: Text('Are you sure you want to delete this task?'),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('No'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            FlatButton(
-              child: Text('Yes'),
-              onPressed: () {
-                SQLiteProvider.db.deleteTask(id);
-                notifyListeners();
-                Navigator.pop(context);
-              },
-            )
-          ],
-        );
-      },
-    );
+  void deleteTask(BuildContext context, int id) {
+    SQLiteProvider.db.deleteTask(id);
+    notifyListeners();
   }
 }
