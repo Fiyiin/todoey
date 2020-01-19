@@ -51,7 +51,7 @@ class TasksScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top:10.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Column(
                         children: <Widget>[
                           Text(
@@ -83,14 +83,14 @@ class TasksScreen extends StatelessWidget {
                   child: FutureBuilder(
                     future: Provider.of<TaskData>(context).taskCount(),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    return Text(
-                      '${snapshot.data} Tasks',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
-                      ),
-                    );
-  }
+                      return Text(
+                        '${snapshot.data ?? 0 } Tasks',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -106,7 +106,33 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(30.0),
                 ),
               ),
-              child: TasksList(key: Key('task_list'),),
+              child: Builder(
+                builder: (BuildContext context) {
+                  return FutureBuilder(
+                    future: Provider.of<TaskData>(context).taskCount(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.data == 0) {
+                        return Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 80.0),
+                            child: Text(
+                              'No tasks here yet...',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: themeData.darkTheme
+                                    ? Colors.white
+                                    : Colors.black38,
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return TasksList();
+                      }
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],
