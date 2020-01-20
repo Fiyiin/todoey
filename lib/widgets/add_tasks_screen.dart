@@ -12,11 +12,11 @@ class AddTasksScreen extends StatelessWidget {
     String newTask;
     return Container(
       decoration: BoxDecoration(
-        color: themeData.darkTheme ? Colors.black : (0xff757575),
+        color: themeData.darkTheme ? Colors.black : Color(0xff757575),
         border: Border(
           top: BorderSide(
             width: 0,
-            color: themeData.darkTheme ? Colors.black : (0xff757575),
+            color: Color(0xff757575),
           ),
         ),
       ),
