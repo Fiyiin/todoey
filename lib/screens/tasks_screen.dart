@@ -27,18 +27,6 @@ class TasksScreen extends StatelessWidget {
                     Container(
                       child: Row(
                         children: <Widget>[
-                          CircleAvatar(
-                            radius: 25.0,
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.list,
-                              color: Colors.lightBlueAccent,
-                              size: 25.0,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
                           Text(
                             'Todoey',
                             style: TextStyle(
