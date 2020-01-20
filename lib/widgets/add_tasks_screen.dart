@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/dark_theme.dart';
 import 'package:todoey/models/task.dart';
 
 class AddTasksScreen extends StatelessWidget {
@@ -6,9 +8,18 @@ class AddTasksScreen extends StatelessWidget {
   final Function addTask;
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<DarkThemeData>(context);
     String newTask;
     return Container(
-      color: Color(0xff757575),
+      decoration: BoxDecoration(
+        color: themeData.darkTheme ? Colors.black : (0xff757575),
+        border: Border(
+          top: BorderSide(
+            width: 0,
+            color: themeData.darkTheme ? Colors.black : (0xff757575),
+          ),
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 45.0),
         decoration: BoxDecoration(
