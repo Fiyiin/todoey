@@ -54,16 +54,16 @@ void main() {
       });
     });
 
-    testWidgets('finds a specific instance of TaskList',
+    testWidgets('finds no instance of TaskList',
         (WidgetTester tester) async {
       final testKey = Key('task_list');
 
       await _buildTasksScreen(tester);
 
-      expect(find.byKey(testKey), findsOneWidget);
+      expect(find.byKey(testKey), findsNothing);
     });
 
-    testWidgets('finds FloatinActionButton', (WidgetTester tester) async {
+    testWidgets('finds FloatingActionButton', (WidgetTester tester) async {
       await _buildTasksScreen(tester);
 
       expect(find.byType(FloatingActionButton), findsOneWidget);
