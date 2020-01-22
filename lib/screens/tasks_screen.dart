@@ -72,7 +72,7 @@ class TasksScreen extends StatelessWidget {
                     future: Provider.of<TaskData>(context).taskCount(),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       return Text(
-                        '${snapshot.data ?? 0 } Tasks',
+                        '${snapshot.data ?? 0 } ${snapshot.data == 1 ? 'Task' : 'Tasks'}',
                         style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.white,

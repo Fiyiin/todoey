@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<DarkThemeData>(
         builder: (BuildContext context, value, Widget child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             home: TasksScreen(),
           );
         },

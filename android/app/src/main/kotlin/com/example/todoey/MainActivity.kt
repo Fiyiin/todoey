@@ -1,4 +1,4 @@
-package com.example.todoey
+package com.fiyin.todoey
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
